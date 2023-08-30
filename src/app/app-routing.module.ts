@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { loginGuard } from './guards/login.guard';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 const routes: Routes = [
 
@@ -41,7 +42,7 @@ const routes: Routes = [
     import('./order-placed-module/order-placed.module').then(m => m.OrderPlacedModule)
     ,canActivate : [loginGuard]
   },
-  
+  { path: '**', component: NotfoundComponent},
  
 
 ];
