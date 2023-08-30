@@ -1,0 +1,91 @@
+<div class="container">
+    <div class="product-list" *ngIf="orderedItems.length != 0 else loading">
+       <div class="order-details" *ngFor="let orderData of orderedItems">
+        <div class="restaurant">
+            <img [src]="orderData.foodItem.image" [alt]="orderData.foodItem.name">
+            <div class="restaurant-details">
+                <h2 class="restaurant-title">
+                    {{ orderData.restaurant.name}}
+                </h2>
+                <p class="restaurant-description">
+                    {{ orderData.restaurant.address }}
+                </p>
+                <p class="restaurant-deliverytime">
+                    {{ orderData.restaurant.deliveryTime}}
+                </p>
+            </div>
+            <div class="product-status">
+                <span>
+                    {{ orderData.status}}
+                </span>
+            </div>
+        </div>
+        <div class="product">
+            <div class="product-details">
+                <h2 class="product-title">
+                    {{ orderData.quantity}} X {{ orderData.foodItem.name}}
+                </h2>
+                <p class="product-description">
+                    {{ orderData.foodItem.detail }}
+                </p>
+            </div>
+            <div class="order-date-price">
+                <p class="date-time">
+                    {{ orderData.timestamp | date: 'dd MMM yyyy hh:mm a' }}
+                 </p>
+                 <p class="product-price">
+                     {{ (orderData.foodItem.price*orderData.quantity) | currency: 'INR'}}
+                 </p>
+            </div>
+            <!--Once the product is delivered then only the rating functionality will be shown
+             Please wait for few mins in the order tracking page to see this functionality
+             Order Received -> Preparing -> out for delivery t->Delivered 
+             -->
+            <div class="product-rating">
+                <div class="rating-list" *ngIf="orderData.status === 'Delivered'">
+                    <div class="d-flex rating">
+                    <p class="w-50">Rate</p>
+                    <div class="start w-50 rating-star">
+                        <ngb-rating [max]="5" [formControl]="ratingControl"></ngb-rating>
+                     </div>
+                    </div>
+
+                    <div class="d-flex rating">
+                        <p class="w-50">Reviews</p>
+                        <div class="start w-50 rating-star">
+                            <form #frm="ngForm" (ngSubmit)="onsubmit(orderData.restaurant.id,frm)">
+                                <div class="form-group">
+                                    <!--Not adding much validation only required is enough-->
+                                    <input type="text" class="form-control" name="reviewMessage" required ngModel #reviewMessage="ngModel">
+                                    <button type="submit" class="btn-submit" [disabled]="frm.invalid">Submit</button>
+                                </div>
+                            </form>
+                         </div>
+                    </div>
+        
+                </div>
+                 <p class="product-reorder">
+                   <button type="button" class="btn btn-danger" (click)="reorderItem(orderData)">Reorder</button>
+                 </p>
+            </div>
+        </div>
+       </div>
+    </div>
+    </div>
+
+
+    <ng-template #loading>
+        <div class="empty-container">
+            <h4>{{ emptyOrderMsg1 }}</h4>
+            <h4>{{ emptyOrderMsg2 }}</h4>
+        </div>
+    </ng-template>
+
+    <ng-template #mymodal let-modal>
+        <div class="modal-body">
+             {{ ratingMessage }}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+        </div>
+      </ng-template>

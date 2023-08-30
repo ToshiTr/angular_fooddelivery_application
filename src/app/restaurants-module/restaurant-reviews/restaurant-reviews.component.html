@@ -1,0 +1,18 @@
+<div class="container" *ngIf="restaurantReview.length != 0 else loading">
+    <div class="review-list" *ngFor="let review of restaurantReview">
+        <div class="review">
+          <p class="rating">
+            <ngb-rating [max]="5" [rate]="review.rating" [readonly]="true"></ngb-rating>
+          </p>
+          <p>{{ review.review }}</p>
+        </div>
+      </div>
+</div>
+
+
+
+<ng-template #loading>
+  <div class="empty-container">
+      <h4>{{ emptyReviewMessage }}</h4>
+  </div>
+</ng-template>

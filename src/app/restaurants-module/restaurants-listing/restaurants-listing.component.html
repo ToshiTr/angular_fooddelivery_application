@@ -1,0 +1,30 @@
+<ul>
+    <li *ngFor="let rest of restaurants">
+        <a [routerLink]="['/restaurant/restaurant-details', rest.id]">
+            <img [src]="rest.image" [alt]="rest.name">
+            <div class="content">
+                <div class="name">
+                    {{rest.name}}
+                </div>
+                <span class="favourite {{ rest.favourite ? '' : 'not' }} ">♥️</span>
+                <div class="avg-rating">
+                    {{rest.avgrating | number : '1.1-1'}}☆
+                </div>
+                <div class="restruants-details">  
+                    
+                    <div class="cuisines">
+                        <span>
+                            {{ rest.cuisines }}
+                        </span>
+                    </div>                 
+                    <div class="avg-price">
+                        {{rest.price | currency : 'INR'}}
+                    </div>
+                </div>
+                <div class="avg-deliverytime">
+                    🕐{{rest.deliveryTime}}
+                </div>
+            </div>
+        </a>
+    </li>
+</ul>

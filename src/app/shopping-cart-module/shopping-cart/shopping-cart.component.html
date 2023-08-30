@@ -1,0 +1,86 @@
+<div class="container" *ngIf="cartDataList.length != 0 else loading">
+    <h2>Cart</h2>
+    <div class="container-body">
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th></th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cartData of cartDataList">
+                    <td>
+                        <div class="food-img">
+                            <img [src]="cartData.foodItem.image" [alt]="cartData.foodItem.name">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="food-name">
+                           
+                            <a [routerLink]="['/restaurant/restaurant-details', cartData.restaurantId]">
+                                <span>{{ cartData.foodItem.name }}</span>
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        {{ cartData.foodItem.price | currency : 'INR' }}
+                    </td>
+                    <td>
+                        <div class="qty-selector">
+                            <button type="button" class="btn" (click)="updateQty(cartData,'dec')"><i
+                                    class="fa fa-minus"></i>
+                            </button>
+                            <span> {{ cartData.quantity }}</span>
+                            <button type="button" class="btn" (click)="updateQty(cartData,'inc')"><i
+                                    class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <span>
+                                <div>
+                                    <span>
+                                        {{ cartData.getTotalPrice() | currency : 'INR' }}
+                                    </span>
+                                </div>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="remove-cart">
+                            <button (click)="removeFromCart(cartData.foodItem.id)">Remove</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" style="text-align: right;">Total:</td>
+                    <td>
+                        {{ cartTotalAmount |currency: 'INR'}}
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="footer" [hidden]="cartDataList.length === 0">
+        <div class="col-3 checkout-btn">
+            <a routerLink="/cart/cart-checkout">Proceed to Checkout</a>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <div class="empty-container">
+        <h4> {{ AddTocartMsg1 }}</h4>
+        <a [routerLink]="['/restaurant/restaurants-listing']">{{ AddTocartMsg2 }}</a>
+    </div>
+</ng-template>
+

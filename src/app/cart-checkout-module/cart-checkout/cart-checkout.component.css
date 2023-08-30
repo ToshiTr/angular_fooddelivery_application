@@ -1,0 +1,103 @@
+.cart-item {
+    margin-top : 50px;
+}
+.container-body {
+    align-items: flex-start;
+    border-top: 1px solid black;
+    justify-content: space-between;
+    margin-bottom: 50px;
+
+}
+ul{
+    border-bottom : 1px solid grey;
+    padding :10px;
+}
+ul li {
+    display: flex;
+    justify-content: space-around;
+}
+ul li img {
+    height :5rem;
+    width: 5rem;
+    border-radius: 100rem;
+    object-fit: cover;
+}
+ul li div{
+    padding: 1rem;
+}
+
+ul li div:not(:first-child){
+    flex-basis: 18%;
+}
+
+ul li select {
+    width: 3rem;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+    font-weight: 100;
+}
+
+table .remove-cart button {
+    background-color: red;
+    color:white;
+    border:none;
+    outline:none;
+    opacity: 0.7;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+.qty-selector .btn {
+    background-color: lightgrey;
+    border-radius: 50%;
+    font-size: 16px;
+    margin: 0 8px;
+}
+ .btn i {
+    font-size: 16px;
+}
+.qty-selector span {
+    padding: 3px;
+    font-size: 18px;
+}
+
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+/* .form-control.ng-touched.ng-invalid {
+    border: 2px solid red;
+} */
+
+.form-area {
+    padding : 30px;
+}
+
+.footer {
+    padding: 10px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    background-color: red;
+    .checkout-btn a , .cart-checkout{
+        color: white;
+    }
+
+}
+.checkout-btn {
+    cursor: pointer;
+}

@@ -1,0 +1,90 @@
+ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+}
+ul li a {
+    height: 25rem;
+    width: 20rem;
+    border: 1px solid whitesmoke;
+    border-radius: 1rem;
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    /* overflow: hidden; */
+    color: #e72929;
+    padding: 0.5rem;
+}
+
+ul li a img {
+    width: 300px;
+    height: 250px;
+}
+
+li a:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.content {
+    padding: 0.5rem 0;
+    position: relative;
+    color: black;
+}
+
+.avg-deliverytime {
+    position: absolute;
+    top: 5rem;
+    right: 0rem;
+    color: black;
+}
+
+div .avg-rating {
+    position: absolute;
+    top: .5rem;
+    right: 0rem;
+    background-color: green;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.restruants-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .cuisines {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+
+    }
+}
+.cuisines span {
+     border-radius: 2rem;
+     background-color: whitesmoke;
+     color:grey;
+     font-size: 16px;
+     margin-right: .3rem;
+}
+.avg-price{
+    color: grey;
+}
+.avg-deliverytime{
+    font-size: 16px;
+    margin-top: 25px;
+}
+.favourite {
+    color : red;
+    font-weight: bold;
+    font-size: 30px;
+}
+.not {
+   color : #E1E1E1 !important;
+}

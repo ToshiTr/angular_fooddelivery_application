@@ -1,0 +1,122 @@
+<div class="container">
+    <h2>Billing Address</h2>
+    <!--Display the list of existing saved address-->
+    <div class="form-check" *ngFor="let add of savedDefaultAddress">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked (change)="setSelectedAdd(add);">
+
+        <label class="form-check-label" for="flexRadioDefault2">
+
+            <div class="default-address">
+                <p> {{ add.street}} <br>
+                    {{ add.city }}, {{add.zipcode}}<br>
+                    {{ add.state }}, {{ add.country }}
+                </p>
+            </div>
+        </label>
+    </div>
+    <!--Allows user to add new address-->
+    <div class="form-check">
+        <input class="form-check-input" type="radio" (click)="addNewAddress()" name="flexRadioDefault" id="flexRadioDefault2">
+        Add New Address
+    </div>
+    <div class="form-area" [hidden]="isShow">
+        <form #frm='ngForm' (submit)="onSubmit(frm)">
+            <!--Keeping this field as optional-->
+            <div class="form-group">
+                <label class="form-label">HouseNo</label>
+                <input type="text" class="form-control" name="houseNo" ngModel>
+            </div>
+           
+            <!--adding validations-->
+            <div class="form-group">
+                <label class="form-label">Street Name</label>
+                <input type="text" class="form-control" name="street"
+                 required ngModel #street='ngModel'
+                 [ngClass]="{ 'is-invalid' : street.touched && street.invalid}">
+                <div class="alert alert-danger" *ngIf="street.touched && street.invalid">
+                      Street name required
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">City</label>
+                <input type="text" class="form-control" name="city" required ngModel #city='ngModel'
+                [ngClass]="{'is-invalid' : city.touched && city.invalid}">
+                <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
+                    City required
+              </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">State</label>
+                <input type="text" class="form-control" name="state" required ngModel #state='ngModel'
+                [ngClass]="{ 'is-invalid' : state.touched && state.invalid}">
+                <div class="alert alert-danger" *ngIf="state.touched && state.invalid">
+                    State name required
+              </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">ZipCode</label>
+                <input type="text" class="form-control" name="zipcode" required ngModel #zipcode='ngModel'
+                [ngClass]="{'is-invalid': zipcode.touched && zipcode.invalid}">
+                <div class="alert alert-danger" *ngIf="zipcode.touched && zipcode.invalid">
+                    Zipcode is required
+              </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Country</label>
+                <input type="text" class="form-control" name="country" required ngModel #country='ngModel'
+                [ngClass]="{ 'is-invalid' : country.touched && country.invalid}">
+                <div class="alert alert-danger" *ngIf="country.touched && country.invalid">
+                    Country is required
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="frm.invalid">Submit</button>
+        </form>
+    </div>
+
+    <div class="cart-item" *ngIf="cartDataList.length != 0 else loading">
+    <h2>Items</h2>
+    <div class="container-body">
+        <ul>
+            <li *ngFor="let cartData of cartDataList">
+                <div>
+                    <img [src]="cartData.foodItem.image" [alt]="cartData.foodItem.name">
+                </div>
+                <div>
+                    <span>{{ cartData.foodItem.name }}</span>
+                </div>
+                <div class="qty-selector">
+                    <button type="button" class="btn"><i class="fa fa-minus"></i>
+                    </button>
+                    <span> {{ cartData.quantity }}</span>
+                    <button type="button" class="btn"><i class="fa fa-plus"></i>
+                    </button>
+                </div>
+                <div>
+                    <span>
+                        {{ cartData.getTotalPrice() | currency : 'INR' }}
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="footer" [hidden]="cartDataList.length === 0">
+    <div class="col-9 cart-checkout">
+        <div class="total-price">
+          Total :  {{ cartTotalAmount |currency: 'INR'}}
+        </div>
+    </div>
+    <div class="col-3 checkout-btn">
+        <a (click)="orderPlaced(cartDataList)">Place Order</a>
+    </div>
+</div>
+</div>
+
+
+<ng-template #loading>
+    <div class="empty-container">
+        <h4>Empty Cart!!</h4>
+    </div>
+</ng-template>
+

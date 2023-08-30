@@ -1,0 +1,83 @@
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            <div class="img-container">
+                <img [src]="restaurant.image" [alt]="restaurant.name" style="width:100%;">
+            </div>
+        </div>
+        <div class="col">   
+              <div class="row">
+                <div class="col">
+                    <div class="img-container">
+                        <img [src]="restaurant.image" [alt]="restaurant.name" style="width:100%;">
+                    </div>                
+                </div>
+                <div class="col">
+                    <div class="img-container">
+                        <img [src]="restaurant.image" [alt]="restaurant.name" style="width:100%;">
+                    </div>                
+                </div>   
+                <div class="col">
+                    <div class="img-container">
+                        <img [src]="restaurant.image" [alt]="restaurant.name" style="width:100%;">
+                    </div>                
+                </div>       
+            </div>          
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="restraunt-details">
+                <div class="header">
+                    <div class="name">
+                      <h2> <span class="restaurant-name">{{ restaurant.name }}</span> </h2>  
+                      <span class="favourite {{ restaurant.favourite ? '' : 'not' }} " (click)="addToFavourite(restaurant) ? open(mymodal):''">♥️</span>
+                    </div>
+                    <div>
+                        <span class="avg-rating">
+                         {{restaurant.avgrating | number : '1.1-1'}}☆
+                        </span>
+                     </div>
+                </div>
+                <div class="cuisines">
+                    <span>
+                        {{ restaurant.cuisines }}
+                    </span>
+                </div>
+                <div class="address">
+                    <span>
+                        {{ restaurant.address }}
+                    </span>
+                </div>
+                <div class="contact">
+                    <span>
+                        {{ restaurant.contact }}
+                    </span>
+                </div>
+                
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col rest-menu">
+            <h3> <a [routerLink]="['restaurant-menu', restaurant.id]" routerLinkActive="active">View Menu</a> </h3>
+        </div>
+        <div class="col rest-review">
+            <h3> <a [routerLink]="['restaurant-review', restaurant.id]" routerLinkActive="active">Reviews</a> </h3>
+        </div>
+    </div>
+</div>
+
+<ng-template #mymodal let-modal>
+    <div class="modal-body">
+        {{addToFavMessage}}
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="viewFavourite()">View Favourite Restaurant</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+    </div>
+  </ng-template>
+
+  <!--This will load the child component(RestaurantMenuComponent)-->
+<router-outlet ></router-outlet>

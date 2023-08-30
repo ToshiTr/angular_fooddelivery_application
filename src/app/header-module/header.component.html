@@ -1,0 +1,29 @@
+
+
+<div class="header">
+  <a class="logo">FoodEaze</a>
+  <div class="header-right">
+    <a  [routerLink]="['restaurant/restaurants-listing']" routerLinkActive="active">
+      <span>
+        <i>Home</i>
+      </span>
+    </a>
+    <a class="fav-restaurant" [routerLink]="['/wishlist/favourite-restaurant']" routerLinkActive="active">
+      <span>
+        <i>Favorite Restaurant</i>
+      </span>
+    </a>
+    <a class="track-order" [routerLink]="['/track-order']" routerLinkActive="active">
+      <span>Track Order</span>
+    </a>
+    <a class="shopping cart" [routerLink]="['/cart/add-to-cart']" routerLinkActive="active">
+      <i class="fa fa-shopping-cart"></i>
+    </a>
+
+    <span>
+    <a class="logout" (click)="logout()" routerLinkActive="active">
+      <i class="fa fa-sign-out"></i>
+    </a>
+    </span>
+  </div>
+</div>

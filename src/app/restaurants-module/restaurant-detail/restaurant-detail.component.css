@@ -1,0 +1,85 @@
+
+.container.text-center{
+    margin-bottom: 50px;
+}
+
+.img-container img{
+    object-fit: cover;
+    border-radius: 1rem;
+    height: 25rem;
+    margin:1px;
+}
+
+
+.restraunt-details {
+    text-align: left;
+    padding: 5px;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .avg-rating {
+        right: 0rem;
+        background-color: green;
+        color: white;
+        padding: 2px 5px;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .cuisines {
+        padding: 3px;
+        color: grey;
+    }
+    .header {
+        .name {
+            line-height: 25px;
+        }
+    }
+    .address,
+    .contact {
+        padding: 3px;
+        color: #A9A9A9;
+    }
+}
+
+.restraunt-details button:hover {
+    opacity: .9;
+    cursor: pointer;
+}
+
+.rest-menu , .rest-review{
+    border-top: 1px solid #d3d3d3;
+    margin-top: 10px;
+    padding-top: 10px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.rest-menu a, .rest-review a {
+    cursor: pointer;
+    color:white;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: gray;
+    font-size: 20px;
+
+}
+
+.rest-menu a.active, .rest-review a.active {
+    background-color: green;
+}
+
+.favourite {
+    color: red;
+    font-weight: bold;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.not {
+    color: lightgrey !important;  
+}

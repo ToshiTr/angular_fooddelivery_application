@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "foodorderapp-ab1be": {
+      "hosting": {
+        "FoodOrderApp": [
+          "foodorderapp-ab1be"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "foodorderapp-ab1be"
+  }
+}

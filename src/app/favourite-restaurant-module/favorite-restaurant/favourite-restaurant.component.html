@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="product-list" *ngIf="favouriteRestaurant.length != 0 else loading">
+        <!--Loop through all the restaurants and display if the favourite is true-->
+        <div class="rest-details" *ngFor="let rest of favouriteRestaurant">
+            <div class="restaurant" *ngIf="rest.favourite === true">
+                <img [src]="rest.image" [alt]="rest.name">
+                <div class="restaurant-details">
+                    <a [routerLink]="['/restaurant/restaurant-details', rest.id]">
+                        <h2 class="restaurant-title">
+                            {{ rest.name}}
+                        </h2>
+                    </a>
+                    <p class="restaurant-description">
+                        {{ rest.address }}
+                    </p>
+                    <p class="restaurant-contact">
+                        {{ rest.contact}}
+                    </p>
+                </div>
+                <div class="fav-rest">
+                    <!--Clicking on heart icon will remove the restaurant from the Favourite Restaurant List-->
+                    <span class="favourite" (click)="addToFavourite(rest)">♥️</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <div class="empty-container">
+        <h4> {{ emptyFavRestaurantMsg }}</h4>
+    </div>
+</ng-template>

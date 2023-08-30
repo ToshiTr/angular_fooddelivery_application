@@ -1,0 +1,43 @@
+
+<div class="container text-center" #menu>
+    <div class="row food-menu" *ngFor="let food of foodItems">
+      <div class="col-md-4 col-sm-6 thirty img">
+          <img [src]="food.image" [alt]="food.name">
+      </div>
+      <div class="col-md-4 col-sm-6 seventy">
+            <div class="details">
+              <div class="name">
+                <h3> {{ food.name }}</h3>
+              </div>
+              <div class="rating">
+               <ngb-rating [max]="5"  [(rate)]="food.rating" [readonly]="true">
+                  <ng-template let-fill="fill">
+                    <span class="defaultRating" [class.filled]="fill===100">
+                      <span class="childRating" [style.width.%]="fill">&Star;;;</span>
+                      &Star;</span>
+                  </ng-template>
+                </ngb-rating>        
+            </div>
+              <div class="price">
+               <span> {{ food.price | currency: 'INR' }} </span>
+              </div>
+              <div class="detail">
+                <span> {{ food.detail }} </span>
+              </div>
+            </div>
+            <div class="cart-button">
+              <button type="submit" (click)="addToCart(food)? open(mymodal): ''">Add to cart</button>
+            </div>
+      </div>
+    </div>
+   
+<ng-template #mymodal let-modal>
+  <div class="modal-body">
+       {{ addToCartMsg }}
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="viewCart()">View Cart</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+  </div>
+</ng-template>
+</div>
